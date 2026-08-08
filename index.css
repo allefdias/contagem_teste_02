@@ -88,6 +88,12 @@ h1 {
     text-align: center;
 }
 
+.setor-horarios {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
 /* ---------------- NOME E QUANTIDADE ---------------- */
 .nome-proc {
     display: flex;
