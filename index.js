@@ -60,15 +60,21 @@ function adicionarSetor() {
     setorDiv.id = `setor-${setorCount}`;
 
     setorDiv.innerHTML = `
-        <label><strong>Setor:</strong></label>
         <div class="setor-info">
+            <label><strong>Setor:</strong></label>
             <input type="text" class="input-setor" placeholder="Nome do setor"
                 list="setoresList" onchange="salvarSetor(this.value)">
+            <div class="setor-horarios">
+                <label>Entrada: <input type="time" class="input-entrada"></label>
+                <label>Saída: <input type="time" class="input-saida"></label>
+            </div>
         </div>
 
         <div class="nomesContainer" id="nomes-${setorCount}"></div>
-        <button onclick="adicionarNome(${setorCount})">+ Adicionar Nome</button>
-        ${setorCount > 1 ? `<button class="repetir" onclick="repetirNomes(${setorCount})">↻ Repetir Nomes</button>` : ""}
+        <div style="display:flex; gap:8px; margin-top:10px;">
+            <button onclick="adicionarNome(${setorCount})">+ Adicionar Nome</button>
+            ${setorCount > 1 ? `<button class="repetir" onclick="repetirNomes(${setorCount})">↻ Repetir Nomes</button>` : ""}
+        </div>
     `;
 
     container.appendChild(setorDiv);
@@ -176,6 +182,9 @@ function extrairDadosFormulario() {
         const nomeSetor = formatarCaixaAlta(rawSetor);
         if (!nomeSetor) return;
 
+        const entradaVal = setor.querySelector(".input-entrada") ? setor.querySelector(".input-entrada").value : "";
+        const saidaVal = setor.querySelector(".input-saida") ? setor.querySelector(".input-saida").value : "";
+
         const nomesDivs = setor.querySelectorAll(".nome-proc");
         const funcionarios = [];
 
@@ -189,7 +198,12 @@ function extrairDadosFormulario() {
                 if (!validarNomeSobrenome(nomeFormatado)) {
                     dados.errosValidacao.push(`O funcionário "${rawNome.trim()}" precisa conter NOME e SOBRENOME.`);
                 } else if (qtd > 0) {
-                    funcionarios.push({ nome: nomeFormatado, qtd });
+                    funcionarios.push({ 
+                        nome: nomeFormatado, 
+                        qtd,
+                        entrada: entradaVal,
+                        saida: saidaVal
+                    });
                 }
             }
         });
@@ -197,6 +211,8 @@ function extrairDadosFormulario() {
         if (funcionarios.length > 0) {
             dados.setores.push({
                 nome: nomeSetor,
+                entrada: entradaVal,
+                saida: saidaVal,
                 funcionarios: funcionarios
             });
         }
@@ -224,7 +240,8 @@ function gerarRelatorio() {
 
     dados.setores.forEach(setor => {
         let totalSetor = 0;
-        let bloco = `*Setor: ${setor.nome}*\n`;
+        let infoHorario = (setor.entrada || setor.saida) ? ` (${setor.entrada || '--:--'} às ${setor.saida || '--:--'})` : '';
+        let bloco = `*Setor: ${setor.nome}${infoHorario}*\n`;
 
         setor.funcionarios.forEach(f => {
             bloco += `- ${f.nome}: ${f.qtd} Exames\n`;
