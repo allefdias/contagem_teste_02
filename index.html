@@ -22,15 +22,15 @@
 
     <!-- CONTROLE DE DATA -->
     <div class="controle-data">
-      <button id="btnAlterarData" onclick="alternarData()">Alterar data</button>
+      <button type="button" id="btnAlterarData" onclick="alternarData()">Alterar data</button>
       <input type="date" id="inputData">
-      <button id="btnConfirmarData" onclick="confirmarData()">Confirmar</button>
+      <button type="button" id="btnConfirmarData" onclick="confirmarData()">Confirmar</button>
     </div>
 
     <!-- SETORES -->
     <div id="setoresContainer"></div>
     <div class="acoes">
-      <button onclick="adicionarSetor()">+ Adicionar Setor</button>
+      <button type="button" onclick="adicionarSetor()">+ Adicionar Setor</button>
     </div>
 
     <!-- OBSERVAÇÕES -->
@@ -41,7 +41,7 @@
 
     <!-- AÇÕES -->
     <div class="acoes">
-      <button class="gerar" onclick="gerarRelatorio()">📄 Gerar Relatório</button>
+      <button type="button" class="gerar" onclick="gerarRelatorio()">📄 Gerar Relatório</button>
     </div>
 
     <!-- RELATÓRIO -->
@@ -49,8 +49,8 @@
 
     <!-- AÇÕES RELATÓRIO -->
     <div class="acoes-relatorio" id="acoesRelatorio" style="display:none;">
-      <button id="btnEnviarPlanilha" class="planilha" onclick="enviarParaGoogleSheets()">📊 Salvar no Google Sheets</button>
-      <button id="btnEnviar" onclick="enviarParaWhatsApp()">📲 Enviar para WhatsApp</button>
+      <button type="button" id="btnEnviarPlanilha" class="planilha" onclick="enviarParaGoogleSheets()">📊 Salvar no Google Sheets</button>
+      <button type="button" id="btnEnviar" onclick="enviarParaWhatsApp()">📲 Enviar para WhatsApp</button>
     </div>
 
     <!-- DATALISTS -->
