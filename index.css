@@ -70,7 +70,7 @@ h1 {
 
 .setor-info input[type="text"] {
     width: 100%;
-    text-transform: uppercase; /* Força exibição do setor em maiúsculas */
+    text-transform: uppercase;
 }
 
 .setor-info label {
@@ -82,7 +82,7 @@ h1 {
     color: #374151;
 }
 
-/* ⏰ CAMPOS DE HORA */
+/* ⏰ CAMPOS DE HORA E TURNO */
 .setor-info input[type="time"] {
     width: 90px;
     text-align: center;
@@ -90,34 +90,55 @@ h1 {
 
 .setor-horarios {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 /* ---------------- NOME E QUANTIDADE ---------------- */
 .nome-proc {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 10px;
     align-items: center;
 }
 
 .input-nome {
     flex: 3;
-    text-transform: uppercase; /* Força exibição do nome do funcionário em maiúsculas */
+    text-transform: uppercase;
 }
 
 .input-proc {
     flex: 1;
-    max-width: 90px;
+    max-width: 80px;
     text-align: center;
 }
 
-/* ---------------- INPUTS ---------------- */
+/* Botão de Excluir Funcionário */
+.btn-deletar-nome {
+    background-color: #ef4444;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+}
+
+.btn-deletar-nome:hover {
+    background-color: #dc2626;
+}
+
+/* ---------------- INPUTS E SELECTS ---------------- */
 input[type="text"],
 input[type="number"],
 input[type="time"],
 input[type="date"],
+select,
 textarea {
     padding: 10px;
     border: 1px solid #d1d5db;
@@ -127,7 +148,12 @@ textarea {
     background-color: #ffffff;
 }
 
+select {
+    cursor: pointer;
+}
+
 input:focus,
+select:focus,
 textarea:focus {
     outline: none;
     border-color: #2563eb;
@@ -155,11 +181,6 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
-}
-
-/* Botões específicos */
-button.repetir {
-    background-color: #16a34a;
 }
 
 button.gerar {
@@ -236,5 +257,10 @@ button#btnEnviar:hover {
 
     button {
         width: 100%;
+    }
+
+    .setor-horarios label {
+        width: 100%;
+        justify-content: space-between;
     }
 }
